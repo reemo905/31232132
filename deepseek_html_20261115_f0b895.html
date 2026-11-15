@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مراجعة معاني كلمات القرآن</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>مراجعة معاني كلمات القرآن</h1>
+      <p class="subtitle">الصفحات 1–10 — 192 كلمة</p>
+    </header>
+
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <p class="progress-text" id="progressText">0 من 192</p>
+
+    <main id="app">
+      <!-- الشاشة الرئيسية -->
+      <section id="homeScreen" class="screen active">
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-num" id="statKnown">0</span>
+            <span class="stat-label">أعرفها</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num" id="statMistakes">0</span>
+            <span class="stat-label">أخطأت فيها</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num" id="statRemaining">192</span>
+            <span class="stat-label">متبقية</span>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button class="btn btn-primary" onclick="startReview()">ابدأ المراجعة</button>
+          <button class="btn btn-secondary" onclick="startQuiz('mcq')">اختبر نفسك (اختيار)</button>
+          <button class="btn btn-secondary" onclick="startQuiz('write')">اختبر نفسك (كتابة)</button>
+          <button class="btn btn-warning" onclick="startMistakesReview()">راجع أخطائي</button>
+        </div>
+      </section>
+
+      <!-- شاشة المراجعة -->
+      <section id="reviewScreen" class="screen">
+        <div class="card">
+          <p class="card-word" id="reviewWord"></p>
+          <p class="card-meaning hidden" id="reviewMeaning"></p>
+        </div>
+        <div class="buttons">
+          <button class="btn btn-primary" id="showMeaningBtn" onclick="showMeaning()">أظهر المعنى</button>
+          <button class="btn btn-success hidden" id="knowBtn" onclick="markKnown()">أعرفها ✓</button>
+          <button class="btn btn-danger hidden" id="dontKnowBtn" onclick="markUnknown()">لم أتذكرها ✗</button>
+        </div>
+        <button class="btn btn-back" onclick="goHome()">عودة</button>
+      </section>
+
+      <!-- شاشة الاختيار من متعدد -->
+      <section id="mcqScreen" class="screen">
+        <p class="question-label">ما معنى:</p>
+        <p class="card-word" id="mcqWord"></p>
+        <div class="options" id="mcqOptions"></div>
+        <p class="feedback hidden" id="mcqFeedback"></p>
+        <button class="btn btn-primary hidden" id="mcqNextBtn" onclick="nextMcq()">التالي</button>
+        <button class="btn btn-back" onclick="goHome()">عودة</button>
+      </section>
+
+      <!-- شاشة الكتابة -->
+      <section id="writeScreen" class="screen">
+        <p class="question-label">اكتبي معنى:</p>
+        <p class="card-word" id="writeWord"></p>
+        <textarea id="writeInput" rows="3" placeholder="اكتبي المعنى هنا..."></textarea>
+        <button class="btn btn-primary" onclick="checkWrite()">تحقق</button>
+        <p class="feedback hidden" id="writeFeedback"></p>
+        <button class="btn btn-primary hidden" id="writeNextBtn" onclick="nextWrite()">التالي</button>
+        <button class="btn btn-back" onclick="goHome()">عودة</button>
+      </section>
+    </main>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
